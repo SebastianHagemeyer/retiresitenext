@@ -68,21 +68,66 @@ const Home = () => {
                   style={{ height: "100vh" }}
                 >
                   <div className="centerText">
-                    <h1>Welcome to the coin dashboard</h1>
-                    
-                    
+                    <h1>Welcome to the coin viewer</h1>
+                    <div className="uk-button uk-button-large@m uk-button-gradient uk-margin-small-top" >
+                      <WalletMultiButton />
+                    </div>
+
+
+
+
+
+                    {wallet.connected && (
+                      <>
+                        <p>Connected wallet: {wallet.publicKey.toString()}</p>
+                        <button className="uk-button uk-button-large@m uk-button-gradient uk-margin-small-top"
+                          onClick={() => fetchNFTs(wallet.publicKey.toString())}
+                          disabled={loading}
+                        >
+                          {loading ? "Loading..." : "Refresh NFTs"}
+                        </button>
+                      </>
+                    )}
+
+                    {/* Display NFTs */}
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+                        gap: "10px",
+                        marginTop: "20px",
+                        padding: "20px",
+                      }}
+                    >
+                      {nfts.map((nft, index) => (
+                        <div
+                          key={index}
+                          style={{ border: "1px solid #ccc", padding: "10px" }}
+                        >
+                          <img
+                            src={nft.image}
+                            alt={nft.name}
+                            style={{ width: "100%", height: "auto", borderRadius: "10px" }}
+                          />
+                          <p>{nft.name}</p>
+                        </div>
+                      ))}
+                    </div>
+
+
+
 
                   </div>
-                 
+
                 </div>
-                
+
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      
+
     </Layout>
   );
 };

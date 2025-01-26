@@ -51,17 +51,12 @@ const Header = () => {
                     <a href="/">Home</a>
                   </li>
                   <li>
-                    <a href="/community">Community</a>
+                    <a href="/view">View NFT</a>
                   </li>
                   <li>
-                    <a href="/wojak">Wojak</a>
+                    <a href="/mint">Mint NFT</a>
                   </li>
-                  <li>
-                    <a href="/howtobuy">How to Buy</a>
-                  </li>
-                  <li>
-                    <a href="/whitepaper">Whitepaper</a>
-                  </li>
+                  
                 </ul>
               </div>
 
