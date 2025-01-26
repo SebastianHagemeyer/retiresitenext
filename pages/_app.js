@@ -5,7 +5,24 @@ import "../public/assets/css/uikit.min.css"; // UIkit styles
 
 import Script from "next/script"; // For efficient script handling
 
+
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { clusterApiUrl } from '@solana/web3.js';
+import '@solana/wallet-adapter-react-ui/styles.css'; // Wallet styles
+
+
+
 function MyApp({ Component, pageProps }) {
+
+  const network = WalletAdapterNetwork.Mainnet; // Change to Devnet for development
+  const endpoint = clusterApiUrl(network);
+
+  const wallets = [new PhantomWalletAdapter()];
+
+
   return (
     <>
       {/* Critical Scripts */}
@@ -43,7 +60,13 @@ function MyApp({ Component, pageProps }) {
       </Script>
 
       {/* Render the Component */}
-      <Component {...pageProps} />
+      <ConnectionProvider endpoint={endpoint}>
+      <WalletProvider wallets={wallets} autoConnect>
+        <WalletModalProvider>
+          <Component {...pageProps} />
+        </WalletModalProvider>
+      </WalletProvider>
+    </ConnectionProvider>
     </>
   );
 }

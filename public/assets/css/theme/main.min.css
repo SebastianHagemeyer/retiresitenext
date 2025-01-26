@@ -4,6 +4,10 @@
 @import url(https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp&amp;display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;family=Inter:wght@200;400;600&amp;display=swap);
 
+.centerText {
+  text-align: center;
+}
+
 
 #twitter{
   background-color: black !important; color: white !important;
